@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>splice demo</title>
+</head>
+<body>
+	<div id="demo"></div>
+	<button onclick="changeText()">点击改变</button>
+	<script type="text/javascript">
+		var pub = String("这是我的一句话");
+		document.getElementById("demo").innerText = pub;
+		function changeText(){
+			if (!String.prototype.splice) {
+			    String.prototype.splice = function(start, delCount, newSubStr) {
+			        return this.slice(0, start) + newSubStr + this.slice(start + Math.abs(delCount));
+			    };
+			}
+			pub = pub.splice(3,0,"demo");
+			document.getElementById("demo").innerText = pub;
+		}
+	</script>
+</body>
+</html>
